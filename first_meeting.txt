@@ -1,0 +1,53 @@
+Text Based Adventure Meeting notes
+
+
+Dnd structure/ samurai theme starting out
+Caracters select with different abilities
+Minecraft food and water 
+Maybe in later versions different levels with different biomes
+Random number for rolling
+Rolling for success/failure
+Different choices make for different outcomes
+HP, Strength, Hunger, Stamina 
+Boss: Yasuke (a samurai) to become a true samurai? LVL 3
+Weaker enemies: LVL 1: Skeletons LVL2 : Wizard Skeletons 
+If die: game over, play again, Y/N
+
+
+Story Line
+
+
+
+
+
+Loot Structure
+Coins 
+
+
+Potions
+Mysterious Potions in shop, no idea what it is until it does effect (random number generator, even/odd changes power)
+
+
+
+Wish list 
+characters have different abilities based on color 
+ Maybe different character strengths and abilities based on what kind of character
+
+Color output in terminal 
+https://stackoverflow.com/questions/2616906/how-do-i-output-coloured-text-to-a-linux-terminal  
+
+
+
+
+Game Logistics
+To Become a Samurai
+
+Intro sentence
+Choose Your Character
+Red Samurai
+Blue Samurai
+
+Level 1:
+Starts in forest practicing with dummies, someone watches nearby, thinks we have potential, asks us to join their clan. Yes: we get a weapon (Light katana, extra health), No: different guy approaches asks us to join, get a bad guy weapon (Dark katana, strength)
+
+Making your way back home to the clan, you come across a skeleton whose trying to steal your stuff. Gotta kill it (CPP vector perhaps)
