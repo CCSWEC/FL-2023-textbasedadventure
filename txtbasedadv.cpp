@@ -26,9 +26,9 @@ int getChoice(string prompt, const char* const* options, int numOptions)
     do {
         cout << "Enter an option number: " << endl;
         cin >> choice;
-    } while(choice < 0 || choice >= numOptions);
+    } while(choice < 1 || choice > numOptions);
 
-    return choice;
+    return choice - 1;
 }
 
 int enemyChoice()
