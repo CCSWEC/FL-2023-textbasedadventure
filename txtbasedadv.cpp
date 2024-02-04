@@ -50,14 +50,14 @@ void levelOne(int samurai)
 
     switch (samurai)
     {
-    case 1:
+    case 0:
         cout << "You encounter a samurai student training in a forest, you see how much potential he has, so you decide to kill him." << endl;
         cout << "You approach the student and he can sense your anger, a fight starts!" << endl
              << endl;
         getChoice("Comat actions:", combatOptions, 3);
         break;
 
-    case 2:
+    case 1:
         cout << "A fiery skeleton is approaching you";
         break;
     }
@@ -66,17 +66,17 @@ void levelOne(int samurai)
 // function for player's samurai choice
 void samuraiChoice(int samurai)
 {
-    if (samurai == 1)
+    if (samurai == 0)
     {
         cout << endl
                 << "YOU HAVE CHOSEN TO BE THE ... DARK SAMURAI!" << endl;
     }
-    else if (samurai == 2)
+    else if (samurai == 1)
     {
         cout << endl
                 << "YOU HAVE CHOSEN TO BE THE ... LIGHT SAMURAI!" << endl;
     }
-    else if (samurai == 0)
+    else if (samurai == 2)
     {
         cout << "QUITING GAME..." << endl;
         exit(0);
@@ -124,14 +124,14 @@ int main()
     cout << "______________________________________________________________________" << endl;
 
     // prepping hp & strength with choices
-    if (samurai == 1)
+    if (samurai == 0)
     {
         health += 4;
         strength += 6;
         energy += 15;
     }
 
-    if (samurai == 2)
+    if (samurai == 1)
     {
         health += 8;
         strength += 3;
