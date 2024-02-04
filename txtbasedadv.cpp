@@ -37,6 +37,7 @@ int enemyChoice()
     uniform_int_distribution<int> randomInt(1, 3);
 
     int enemyChoice = randomInt(randomNum);
+    return enemyChoice;
 }
 
 /**
@@ -45,16 +46,15 @@ int enemyChoice()
 */
 void levelOne(int samurai)
 {
+    const char* combatOptions[] = { "Attack", "Defend", "Heal" };
+
     switch (samurai)
     {
     case 1:
         cout << "You encounter a samurai student training in a forest, you see how much potential he has, so you decide to kill him." << endl;
         cout << "You approach the student and he can sense your anger, a fight starts!" << endl
              << endl;
-        
-        const char* options[] = { "Attack", "Defend", "Heal" };
-        getChoice("Comat actions:", options, 3);
-
+        getChoice("Comat actions:", combatOptions, 3);
         break;
 
     case 2:
