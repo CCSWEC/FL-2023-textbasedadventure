@@ -5,7 +5,31 @@
 #include <random>
 using namespace std;
 
-// function for player's samurai choice
+/**
+ * @brief a user to choose from a set of options
+ * @param prompt The prompt message for the user
+ * @param options Array of strings holding the options</param>
+ * @param numOptions The number of options in the array</param>
+ * @return The array index of the chosen option, starting at 0</returns>
+*/
+int getChoice(string prompt, const char* const* options, int numOptions)
+{
+    cout << prompt << endl;
+
+    for (int i = 0; i < numOptions; i++)
+    {
+        cout << '\t' << (i + 1) << ". " << options[i] << endl;
+    }
+
+    int choice = -1;
+
+    do {
+        cout << "Enter an option number: " << endl;
+        cin >> choice;
+    } while(choice < 1 || choice > numOptions);
+
+    return choice - 1;
+}
 
 int enemyChoice()
 {
@@ -13,63 +37,55 @@ int enemyChoice()
     uniform_int_distribution<int> randomInt(1, 3);
 
     int enemyChoice = randomInt(randomNum);
+    return enemyChoice;
 }
 
-void battleOutput()
-{
-    cout << "1. Attack" << endl;
-    cout << "2. Defend" << endl;
-    cout << "3. Heal" << endl;
-}
-
+/**
+ * @brief Run level 1
+ * @param samurai The index of the player's chosen samurai
+*/
 void levelOne(int samurai)
 {
+    const char* combatOptions[] = { "Attack", "Defend", "Heal" };
+
     switch (samurai)
     {
-    case 1:
+    case 0:
         cout << "You encounter a samurai student training in a forest, you see how much potential he has, so you decide to kill him." << endl;
         cout << "You approach the student and he can sense your anger, a fight starts!" << endl
              << endl;
-        battleOutput();
+        getChoice("Comat actions:", combatOptions, 3);
         break;
 
-    case 2:
+    case 1:
         cout << "A fiery skeleton is approaching you";
         break;
     }
 }
 
+// function for player's samurai choice
 void samuraiChoice(int samurai)
 {
-
-    while (samurai != 1 || samurai != 2)
+    if (samurai == 0)
     {
-        if (samurai == 1)
-        {
-            cout << endl
-                 << "YOU HAVE CHOSEN TO BE THE ... DARK SAMURAI!" << endl;
-            break;
-        }
-        else if (samurai == 2)
-        {
-            cout << endl
-                 << "YOU HAVE CHOSEN TO BE THE ... LIGHT SAMURAI!" << endl;
-            break;
-        }
-        else if (samurai == 0)
-        {
-            cout << "QUITING GAME..." << endl;
-            exit(0);
-        }
-        else
-        {
-            cout << "INCORRECT SELECTION. Please choose '1' for RED SAMURAI or '2' for BLUE SAMURAI:  ";
-        }
-        cin >> samurai;
+        cout << endl
+                << "YOU HAVE CHOSEN TO BE THE ... DARK SAMURAI!" << endl;
+    }
+    else if (samurai == 1)
+    {
+        cout << endl
+                << "YOU HAVE CHOSEN TO BE THE ... LIGHT SAMURAI!" << endl;
+    }
+    else if (samurai == 2)
+    {
+        cout << "QUITING GAME..." << endl;
+        exit(0);
+    }
+    else
+    {
+        cout << "INCORRECT SELECTION. Please choose '1' for RED SAMURAI or '2' for BLUE SAMURAI:  ";
     }
 }
-
-// function for combat menu
 
 int main()
 {
@@ -96,46 +112,26 @@ int main()
 
     // choose your character
     cout << "______________________________________________________________________" << endl;
-    cout << "CHOOSE YOUR SAMURAI FIGHTER!" << endl;
-    cout << " ---> Press 1 for RED SAMURAI..." << endl;
-    cout << "\t"
-         << "[ HP = 4, STRENGTH = 6]" << endl;
-    cout << "\t"
-         << "'RED SAMURAI are trained to have more strength on the battlefield with" << endl;
-    cout << "\t"
-         << " the ability to cut down foes quicker and cause more damage." << endl;
-    cout << "\t"
-         << "*Careful! The RED SAMURAI pays the price by having smaller health!'" << endl;
 
-    cout << endl;
-    cout << " ---> Press 2 for BLUE SAMURAI..." << endl;
-    cout << "\t"
-         << "[ HP = 8, STRENGTH = 3]" << endl;
-    cout << "\t"
-         << "'BLUE SAMURAI are trained to have more health to survive longer and" << endl;
-    cout << "\t"
-         << " use their defense to an advantage." << endl;
-    cout << "\t"
-         << "*Careful! The BLUE SAMURAI pays the price by having smaller strength!'" << endl;
+    const char* options[] = {
+        "RED SAMURAI are trained to have more strength on the battlefield with the ability to cut down foes quicker and cause more damage, but pay the price by having smaller health!",
+        "BLUE SAMURAI are trained to have more health to survive longer and use their defense to an advantage, but pay the price by having smaller strength!",
+        "Quit Game"
+    };
 
-    cout << endl;
-    cout << " ---> Press 0 to QUIT GAME..." << endl;
-
-    cout << endl
-         << "WHICH SAMURAI WILL YOU BE... ";
-    cin >> samurai;
+    samurai = getChoice("CHOOSE YOUR SAMURAI FIGHTER!", options, 3);
     samuraiChoice(samurai);
     cout << "______________________________________________________________________" << endl;
 
     // prepping hp & strength with choices
-    if (samurai == 1)
+    if (samurai == 0)
     {
         health += 4;
         strength += 6;
         energy += 15;
     }
 
-    if (samurai == 2)
+    if (samurai == 1)
     {
         health += 8;
         strength += 3;
@@ -162,6 +158,7 @@ int main()
     cout << "~" << endl;
     cout << "______________________________________________________________________" << endl;
     cout << "LEVEL ONE ... BEGIN!" << endl;
+    levelOne(samurai);
 
     return 0;
 }
