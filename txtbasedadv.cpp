@@ -13,6 +13,8 @@ int enemyChoice()
     uniform_int_distribution<int> randomInt(1, 3);
 
     int enemyChoice = randomInt(randomNum);
+
+    return enemyChoice;
 }
 
 void battleOutput()
@@ -20,16 +22,20 @@ void battleOutput()
     cout << "1. Attack" << endl;
     cout << "2. Defend" << endl;
     cout << "3. Heal" << endl;
+    cout << "CHOOSE YOUR OPTION: ";
 }
 
 void levelOne(int samurai)
 {
+    string tutorial = "You have 3 options: attack, defend and heal. If you attack and the enemy defends, then you will receive backlash damage and vice-versa. If you both attack, defend or heal neither will take or give damage. If one heals ";
+
     switch (samurai)
     {
     case 1:
         cout << "You encounter a samurai student training in a forest, you see how much potential he has, so you decide to kill him." << endl;
-        cout << "You approach the student and he can sense your anger, a fight starts!" << endl
-             << endl;
+        cout << "You approach the student and he can sense your anger, a fight starts!" << endl << endl;
+        tutorial;
+        
         battleOutput();
         break;
 
@@ -76,7 +82,7 @@ int main()
 
     // variables
     int battleChoices;
-
+    
     int samurai;
     int health = 0;
     int strength = 0;
