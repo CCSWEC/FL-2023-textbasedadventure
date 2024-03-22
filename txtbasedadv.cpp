@@ -6,17 +6,6 @@
 using namespace std;
 
 // function for player's samurai choice
-string line = "- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -";
-
-void displayIntro()
-{
-    cout << "To become a samurai" << endl << endl;
-    cout << "Choose your side:" << endl;
-    cout << "Press 1 for the dark side (HP: 4, Strength: 6)" << endl;
-    cout << "Press 2 for the light side (HP: 8, Strength: 3)" << endl;
-    cout << "Which side will choose? ";
-
-}
 
 int enemyChoice()
 {
@@ -24,76 +13,55 @@ int enemyChoice()
     uniform_int_distribution<int> randomInt(1, 4);
 
     int enemyChoice = randomInt(randomNum);
-
-    return enemyChoice;
 }
 
-void battleStats(int energy, int healthPotion)
+void battleOutput()
 {
-    cout << "Your stats:" << endl;
-    cout << "1. Attack" << " (" << energy << " energy remaining)" << endl;
+    cout << "1. Attack" << endl;
     cout << "2. Defend" << endl;
-    cout << "3. Heal" << " (" << healthPotion << " health potion(s) left)" << endl;
-    cout << "4. Rest" << endl;
-    cout << "\nCHOOSE YOUR OPTION:" << endl;
+    cout << "3. Heal" << endl;
 }
 
-void levelOne(int samurai, int energy, int healthPotion)
+void levelOne(int samurai)
 {
-    string tutorial0 = "Each battle will last 4 rounds";
-    string tutorial1 = "You have 4 options: attack, defend, heal and rest."; 
-    string tutorial2 = "If you attack and the enemy defends, then you will receive backlash damage and vice-versa.";
-    string tutorial3 = "If you both attack, defend or heal neither will take or give damage.";
-    string tutorial4 = "If you are healing while the other is attacking, you get full damage ";
-    string tutorial5 = "If you rest, you will get energy back, but you're risking getting attacked.";
-
     switch (samurai)
     {
-    case 1:
+    case 0:
         cout << "You encounter a samurai student training in a forest, you see how much potential he has, so you decide to kill him." << endl;
-        cout << "You approach the student and he can sense your anger, a fight starts!" << endl << endl;
-        cout << line << endl << tutorial0 << endl << tutorial1 << endl << tutorial2 << endl << tutorial3 
-             << endl << tutorial4 << endl << tutorial5 << endl << line << endl << endl;
-        battleStats(energy, healthPotion);
+        cout << "You approach the student and he can sense your anger, a fight starts!" << endl
+             << endl;
+        battleOutput();
         break;
 
-    case 2:
+    case 1:
         cout << "A fiery skeleton is approaching you";
         break;
     }
 }
 
+// function for player's samurai choice
 void samuraiChoice(int samurai)
 {
-
-    while (samurai != 1 || samurai != 2)
+    if (samurai == 0)
     {
-        if (samurai == 1)
-        {
-            cout << endl
-                 << "YOU HAVE CHOSEN TO BE THE ... DARK SAMURAI!" << endl;
-            break;
-        }
-        else if (samurai == 2)
-        {
-            cout << endl
-                 << "YOU HAVE CHOSEN TO BE THE ... LIGHT SAMURAI!" << endl;
-            break;
-        }
-        else if (samurai == 0)
-        {
-            cout << "QUITING GAME..." << endl;
-            exit(0);
-        }
-        else
-        {
-            cout << "INCORRECT SELECTION. Please choose '1' for RED SAMURAI or '2' for BLUE SAMURAI:  ";
-        }
-        cin >> samurai;
+        cout << endl
+                << "YOU HAVE CHOSEN TO BE THE ... DARK SAMURAI!" << endl;
+    }
+    else if (samurai == 1)
+    {
+        cout << endl
+                << "YOU HAVE CHOSEN TO BE THE ... LIGHT SAMURAI!" << endl;
+    }
+    else if (samurai == 2)
+    {
+        cout << "QUITING GAME..." << endl;
+        exit(0);
+    }
+    else
+    {
+        cout << "INCORRECT SELECTION. Please choose '1' for RED SAMURAI or '2' for BLUE SAMURAI:  ";
     }
 }
-
-// function for combat menu
 
 int main()
 {
@@ -105,19 +73,54 @@ int main()
     int health = 0;
     int strength = 0;
     int energy = 0;
-    int healthPotion = 0;
 
-    displayIntro();
+    // main menu section
+    cout << "********************************************************************" << endl;
+    cout << "TO BECOME A SAMURAI" << endl;
+
+    cout << "********************************************************************" << endl;
+    cout << "C++ Adventure Text-Based Game" << endl;
+    cout << "Created by Collin County Community College's Software Development Club" << endl;
+    cout << "********************************************************************" << endl;
+
+    cout << endl
+         << endl;
+
+    // choose your character
+    cout << "______________________________________________________________________" << endl;
+    cout << "CHOOSE YOUR SAMURAI FIGHTER!" << endl;
+    cout << " ---> Press 1 for RED SAMURAI..." << endl;
+    cout << "\t"
+         << "[ HP = 4, STRENGTH = 6]" << endl;
+    cout << "\t"
+         << "'RED SAMURAI are trained to have more strength on the battlefield with" << endl;
+    cout << "\t"
+         << " the ability to cut down foes quicker and cause more damage." << endl;
+    cout << "\t"
+         << "*Careful! The RED SAMURAI pays the price by having smaller health!'" << endl;
 
     cout << endl;
-    cout << "Press 0 to QUIT " << endl;
+    cout << " ---> Press 2 for BLUE SAMURAI..." << endl;
+    cout << "\t"
+         << "[ HP = 8, STRENGTH = 3]" << endl;
+    cout << "\t"
+         << "'BLUE SAMURAI are trained to have more health to survive longer and" << endl;
+    cout << "\t"
+         << " use their defense to an advantage." << endl;
+    cout << "\t"
+         << "*Careful! The BLUE SAMURAI pays the price by having smaller strength!'" << endl;
 
+    cout << endl;
+    cout << " ---> Press 0 to QUIT GAME..." << endl;
+
+    cout << endl
+         << "WHICH SAMURAI WILL YOU BE... ";
     cin >> samurai;
     samuraiChoice(samurai);
     cout << line << endl << endl;
 
     // prepping hp & strength with choices
-    if (samurai == 1)
+    if (samurai == 0)
     {
         health += 4;
         strength += 6;
@@ -125,7 +128,7 @@ int main()
         healthPotion++;
     }
 
-    if (samurai == 2)
+    if (samurai == 1)
     {
         health += 8;
         strength += 3;
@@ -140,8 +143,6 @@ int main()
     
     cout << line << endl << endl;
     cout << "LEVEL ONE ... BEGIN!" << endl;
-
-    levelOne(samurai, energy, healthPotion);
 
     return 0;
 }
